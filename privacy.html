@@ -5,38 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — Bayesian（贝叶斯的钟摆）</title>
 <style>
-  body { font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif; max-width: 760px; margin: 40px auto; padding: 0 20px; line-height: 1.75; color: #222; }
-  h1 { font-size: 22px; margin-bottom: 4px; } h2 { font-size: 17px; margin-top: 30px; }
+  body { font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif; max-width: 760px; margin: 40px auto; padding: 0 20px; line-height: 1.8; color: #222; }
+  h1 { font-size: 21px; margin-bottom: 4px; } h2 { font-size: 16px; margin-top: 30px; }
   .sub { color: #666; font-size: 14px; margin-top: 0; }
   .box { background: #f6f7f9; border: 1px solid #e3e5e8; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
-  a { color: #185fa5; }
+  a { color: #185fa5; } ul { padding-left: 22px; }
+  li { margin: 6px 0; }
 </style>
 </head>
 <body>
 <h1>Privacy Policy / 隐私政策</h1>
-<p class="sub">App: Bayesian（贝叶斯的钟摆）— YouTube Publishing · Last updated: 2026-10-29</p>
+<p class="sub">App: Bayesian（贝叶斯的钟摆）— YouTube Publishing · Last updated: 2026-10-29 · 中文与 English 同等效力</p>
 
-<h2>应用用途 / What this app does</h2>
-<div class="box">
-<p><strong>中文：</strong>这是一个仅供开发者<strong>本人使用</strong>的本地自动化工具。它的唯一用途是：把开发者自己制作、拥有完整权利的视频（科普类、思想类与科技投资类对话节目），通过 YouTube 官方 Data API 上传到<strong>开发者本人的 YouTube 频道</strong>，并在上传后校验上传状态与封面。不用于任何其他目的。</p>
-<p><strong>English:</strong> A personal, self-hosted automation tool used <strong>only by its developer</strong>. Its sole purpose is to upload the developer's own videos (science, philosophy, and tech-investment dialogue programs that the developer produces) to <strong>the developer's own YouTube channel</strong> via the official YouTube Data API, then verify the upload status and thumbnail. It is not used for any other purpose.</p>
-</div>
+<h2>1. 概述 / Overview</h2>
+<p>Bayesian（贝叶斯的钟摆）是一款<strong>仅供开发者本人使用</strong>的本地桌面自动化工具（下称「本应用」）。它的唯一功能是：把开发者本人制作、本人拥有全部权利的视频文件，通过 YouTube 官方 Data API v3 上传到<strong>开发者本人的 YouTube 频道</strong>的草稿箱或私享列表，并在上传完成后通过 API 校验上传状态、视频 ID 与封面是否生效。本应用不分发、不出售、不面向任何第三方用户。</p>
+<p>Bayesian (the "Application") is a personal, self-hosted desktop automation tool used <strong>exclusively by its developer</strong>. Its sole function is to upload video files created and fully owned by the developer to <strong>the developer's own YouTube channel</strong> as drafts or private videos via the official YouTube Data API v3, and to verify upload status, video ID, and thumbnail via the API. It is not distributed to or used by any third party.</p>
 
-<h2>Google API 使用声明 / Google API compliance</h2>
-<div class="box">
-<p>本应用仅申请并使用 <code>youtube.upload</code> 与 <code>youtube.readonly</code> 两个权限，只操作开发者本人的频道与内容。</p>
-<p><strong>本应用不生成、不存储、不上传、不传播任何 AI 生成的非自愿亲密影像（AI NCII）。</strong>本应用与 AI NCII 无任何关联：它只把开发者本人录制的节目视频上传到本人频道。/ This application does not generate, store, upload, or distribute AI-generated non-consensual intimate imagery (AI NCII) in any form. It only uploads the developer's own recorded programs to the developer's own channel.</p>
-</div>
+<h2>2. 我们处理的数据 / Data we process</h2>
+<ul>
+<li><strong>Google OAuth 令牌（access token 与 refresh token）：</strong>由 Google 在开发者完成 OAuth 授权后签发，仅用于对开发者本人频道的 API 调用做身份验证。令牌保存在开发者本机磁盘的本地文件（secrets/youtube/token.json）中，<strong>不上传到任何第三方服务器</strong>。</li>
+<li><strong>视频元数据：</strong>标题、描述、标签、隐私状态、封面图与字幕文件——全部由开发者在本地配置文件中自行填写。</li>
+<li><strong>本应用不收集：</strong>任何浏览记录、位置信息、通讯录、广告标识符，也不使用 Cookie、分析统计或埋点。</li>
+</ul>
+<p><strong>English:</strong> The Application processes only (a) Google OAuth tokens issued to the developer, stored solely in a local file on the developer's computer and used exclusively to authenticate API calls to the developer's own channel; and (b) video metadata (title, description, tags, privacy status, thumbnail, subtitles) authored by the developer in local configuration files. The Application collects no browsing history, location, contacts, advertising identifiers, cookies, or analytics.</p>
 
-<h2>隐私政策 / Privacy Policy</h2>
-<div class="box">
-<p>完整隐私政策见：<a href="https://daxia437.github.io/privacy.html">https://daxia437.github.io/privacy.html</a></p>
-<p>要点：本应用处理的唯一数据是开发者本人的 Google OAuth 令牌与自行填写的视频元数据，全部仅保存在开发者本机，不向 Google API 端点以外的任何第三方传输。</p>
-</div>
+<h2>3. 数据如何使用 / How data is used</h2>
+<ul>
+<li>用 OAuth 令牌调用 YouTube Data API：上传视频、设置元数据、上传封面、查询上传结果。</li>
+<li>用 API 返回的视频 ID 与状态做本地记录，便于开发者核验。</li>
+<li>除此之外无任何其他用途。/ No other use whatsoever.</li>
+</ul>
 
-<h2>联系方式 / Contact</h2>
+<h2>4. 数据存放与保留 / Storage &amp; retention</h2>
+<ul>
+<li>所有数据（令牌、元数据、生成的发布记录）仅存储在开发者本人的计算机硬盘上。</li>
+<li>令牌有效期由 Google 控制；开发者可随时删除本地令牌文件，或随时在 <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a> 一键撤销本应用的全部访问授权——撤销后本应用立即失去任何 API 能力。</li>
+<li><strong>English:</strong> All data resides on the developer's own computer. The developer may delete the local token file at any time, or revoke the Application's access instantly at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
+</ul>
+
+<h2>5. 第三方 / Third parties</h2>
+<p>本应用唯一的网络通信对象是 Google 官方端点（oauth2.googleapis.com、www.googleapis.com、www.youtube.com）。<strong>除此之外没有任何第三方</strong>：无分析服务、无广告网络、无云存储、无遥测。</p>
+<p><strong>English:</strong> The only network endpoints are Google's own official APIs. No analytics, advertising networks, cloud storage, or telemetry of any kind are involved.</p>
+
+<h2>6. AI NCII 声明 / AI NCII statement</h2>
+<p><strong>本应用不生成、不存储、不上传、不传播任何 AI 生成的非自愿亲密影像（AI-Generated Non-Consensual Intimate Imagery, AI NCII）。</strong>本应用与生成式影像内容无任何关联：它只把开发者本人录制并制作的节目视频上传到本人频道。本应用亦不用于、不支持且不会被用于任何违反 Google API 服务条款的内容。</p>
+<p><strong>English:</strong> The Application does not generate, store, upload, or distribute AI-generated non-consensual intimate imagery (AI NCII) in any form. It has no connection to generative imagery: it only uploads the developer's own recorded programs to the developer's own channel, in full compliance with the Google APIs Terms of Service.</p>
+
+<h2>7. 儿童与适用范围 / Children &amp; applicability</h2>
+<p>本应用不面向儿童，也不面向任何外部用户——其唯一使用者与唯一数据主体是开发者本人。/ The Application is not directed at children and has no external users; its only user and only data subject is the developer.</p>
+
+<h2>8. 政策变更 / Changes</h2>
+<p>若本政策发生实质变更，修订版将发布在本页同一网址，并更新顶部日期。/ Material changes will be published at this same URL with an updated date above.</p>
+
+<h2>9. 联系方式 / Contact</h2>
 <p>开发者本人可通过 Google Cloud Console 中本project登记的开发者联系邮箱联系。/ Contact the developer via the developer contact email registered in Google Cloud Console for this project.</p>
-
-<p class="sub">© 2026 Daxia437 · 本页面由开发者本人维护 / Maintained by the developer</p>
 </body>
 </html>
