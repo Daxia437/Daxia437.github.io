@@ -3,40 +3,123 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bayesian（贝叶斯的钟摆）— YouTube 自动发布工具</title>
+<title>Bayesian（贝叶斯的钟摆）</title>
+<meta name="description" content="Bayesian（贝叶斯的钟摆）是一个由个人开发者自用的视频发布工具，通过 YouTube Data API 把开发者本人制作的视频上传到本人的 YouTube 频道。">
 <style>
-  body { font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif; max-width: 760px; margin: 40px auto; padding: 0 20px; line-height: 1.75; color: #222; }
-  h1 { font-size: 22px; margin-bottom: 4px; } h2 { font-size: 17px; margin-top: 30px; }
+  body { font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif; max-width: 820px; margin: 40px auto; padding: 0 20px; line-height: 1.8; color: #1a1a1a; }
+  h1 { font-size: 26px; margin-bottom: 6px; }
+  h2 { font-size: 18px; margin-top: 34px; padding-bottom: 6px; border-bottom: 1px solid #e3e5e8; }
   .sub { color: #666; font-size: 14px; margin-top: 0; }
-  .box { background: #f6f7f9; border: 1px solid #e3e5e8; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+  .meta { background: #f6f7f9; border: 1px solid #e3e5e8; border-radius: 8px; padding: 14px 18px; margin: 16px 0; }
+  .meta dl { margin: 0; display: grid; grid-template-columns: 170px 1fr; gap: 6px 12px; font-size: 14px; }
+  .meta dt { color: #555; }
+  .meta dd { margin: 0; }
   a { color: #185fa5; }
+  code { background: #f0f1f3; padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+  footer { margin-top: 42px; padding-top: 16px; border-top: 1px solid #e3e5e8; color: #777; font-size: 13px; }
 </style>
 </head>
 <body>
+
 <h1>Bayesian（贝叶斯的钟摆）</h1>
-<p class="sub">YouTube 自动化发布工具 · 个人自用 · AI Production Studio</p>
+<p class="sub">个人自用的视频发布工具 · 开发者本人维护</p>
 
-<h2>应用用途 / What this app does</h2>
-<div class="box">
-<p><strong>中文：</strong>这是一个仅供开发者<strong>本人使用</strong>的本地自动化工具。它的唯一用途是：把开发者自己制作、拥有完整权利的视频（科普类、思想类与科技投资类对话节目），通过 YouTube 官方 Data API 上传到<strong>开发者本人的 YouTube 频道</strong>，并在上传后校验上传状态与封面。不用于任何其他目的。</p>
-<p><strong>English:</strong> A personal, self-hosted automation tool used <strong>only by its developer</strong>. Its sole purpose is to upload the developer's own videos (science, philosophy, and tech-investment dialogue programs that the developer produces) to <strong>the developer's own YouTube channel</strong> via the official YouTube Data API, then verify the upload status and thumbnail. It is not used for any other purpose.</p>
+<div class="meta">
+<dl>
+  <dt>应用名称 / App name</dt><dd><strong>Bayesian（贝叶斯的钟摆）</strong></dd>
+  <dt>应用类型 / Type</dt><dd>桌面端本地工具（Local desktop tool）</dd>
+  <dt>使用者 / Users</dt><dd>仅开发者本人（Developer only，单用户）</dd>
+  <dt>用途 / Purpose</dt><dd>把开发者本人制作的视频上传到本人的 YouTube 频道</dd>
+  <dt>是否需要访客登录</dt><dd><strong>否</strong>。本页面为公开信息页，无需任何登录即可浏览全部内容</dd>
+  <dt>隐私政策</dt><dd><a href="privacy.html">privacy.html</a></dd>
+  <dt>服务条款</dt><dd><a href="terms.html">terms.html</a></dd>
+  <dt>联系邮箱 / Contact</dt><dd><a href="mailto:huangtao312@gmail.com">huangtao312@gmail.com</a></dd>
+</dl>
 </div>
 
-<h2>Google API 使用声明 / Google API compliance</h2>
-<div class="box">
-<p>本应用仅申请并使用 <code>youtube.upload</code> 与 <code>youtube.readonly</code> 两个权限，只操作开发者本人的频道与内容。</p>
-<p><strong>本应用不生成、不存储、不上传、不传播任何 AI 生成的非自愿亲密影像（AI NCII）。</strong>本应用与 AI NCII 无任何关联：它只把开发者本人录制的节目视频上传到本人频道。/ This application does not generate, store, upload, or distribute AI-generated non-consensual intimate imagery (AI NCII) in any form. It only uploads the developer's own recorded programs to the developer's own channel.</p>
-</div>
+<h2>这个应用是做什么的 / What this application does</h2>
+<p>
+<strong>Bayesian（贝叶斯的钟摆）</strong> 是一个由个人开发者编写并<strong>仅供本人使用</strong>的本地程序。
+它解决的是一个很具体的问题：开发者本人制作科普、思想、科技投资类的对话视频，
+每期成片需要上传到自己的 YouTube 频道。手工上传需要在网页上反复填写标题、简介、标签、
+上传封面、等待转码，一期节目要花十几分钟。<strong>本应用把这套重复操作自动化</strong>：
+在开发者本人的电脑上读取已经做好的视频文件与写好的文案，调用 YouTube Data API 上传，
+并在上传完成后读取返回结果，确认视频确实发布成功、封面确实生效。
+</p>
+<p>
+<strong>English.</strong> <em>Bayesian（贝叶斯的钟摆）</em> is a locally-run desktop tool written by and used
+<strong>only by its developer</strong>. It automates one specific chore: uploading the developer's own
+video programs (science, philosophy and tech-investment conversations) to the developer's own YouTube
+channel. It reads finished video files and prepared metadata sitting on the developer's machine, calls
+the YouTube Data API to upload them, and verifies the resulting video and thumbnail afterwards.
+</p>
 
-<h2>隐私政策 / Privacy Policy</h2>
-<div class="box">
-<p>完整隐私政策见：<a href="https://daxia437.github.io/privacy.html">https://daxia437.github.io/privacy.html</a></p>
-<p>要点：本应用处理的唯一数据是开发者本人的 Google OAuth 令牌与自行填写的视频元数据，全部仅保存在开发者本机，不向 Google API 端点以外的任何第三方传输。</p>
+<h2>应用的使用方式 / How it is used</h2>
+<ol>
+  <li>开发者在自己的电脑上准备视频文件与标题、简介、标签等文案；</li>
+  <li>开发者本人使用自己的 Google 账号完成一次 OAuth 授权（授权令牌保存在本机）；</li>
+  <li>程序调用 YouTube Data API 上传视频，默认上传为<strong>私有（private）</strong>状态；</li>
+  <li>上传后程序读取视频信息与封面状态，确认无误；开发者本人再决定是否公开。</li>
+</ol>
+<p>
+程序<strong>不是</strong>面向公众的网站或服务，没有注册入口，也没有除开发者本人以外的任何用户；
+它<strong>不会</strong>代表任何第三方上传内容。
+</p>
+
+<h2>申请并使用的 Google 权限 / Google API scopes used</h2>
+<div class="meta">
+<p style="margin:0">
+<code>https://www.googleapis.com/auth/youtube.upload</code> —— 上传视频到开发者本人的频道。<br>
+<code>https://www.googleapis.com/auth/youtube.readonly</code> —— 读取上传结果与视频信息，用于确认上传成功。
+</p>
 </div>
+<p>
+除此之外<strong>不申请任何其他 Google 权限</strong>，不读取 Gmail、Drive、通讯录、日历或任何其他 Google 服务的数据。
+</p>
+
+<h2>数据处理摘要 / Data handling summary</h2>
+<ul>
+  <li>处理的唯一数据是<strong>开发者本人的 OAuth 刷新令牌</strong>，以及开发者自己填写的视频元数据；</li>
+  <li>全部数据仅保存在<strong>开发者本人的电脑</strong>上，不上传到任何第三方服务器；</li>
+  <li>不使用、不存储、不共享任何其他用户的个人数据——本应用没有其他用户；</li>
+  <li>不出售数据，不用于广告，不用于训练任何模型；</li>
+  <li>对 Google API 返回数据的处理遵循
+      <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>，
+      包含其中的 Limited Use 要求。详见 <a href="privacy.html">隐私政策</a>。</li>
+</ul>
+
+<h2>关于 AI 生成内容的声明 / AI-generated content</h2>
+<p>
+本应用<strong>不生成</strong>任何影像或音频内容——它只上传开发者本人已经录制、剪辑完毕的视频文件。
+本应用<strong>不生成、不存储、不上传、不传播任何 AI 生成的非自愿亲密影像（AI NCII）</strong>，
+与此类内容没有任何关联。
+</p>
+<p>
+<em>This application does not generate any imagery or audio. It only uploads video files already recorded
+and edited by the developer. It does not generate, store, upload, or distribute AI-generated
+non-consensual intimate imagery (AI NCII) in any form, and has no connection to such content.</em>
+</p>
+
+<h2>合规说明 / Compliance</h2>
+<p>
+本应用遵守
+<a href="https://developers.google.com/terms" target="_blank" rel="noopener">Google APIs Terms of Service</a>
+与
+<a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>，
+包括 Limited Use 条款：从 Google API 获得的数据仅用于提供本页面所述的单一功能（上传开发者本人的视频），
+不转移给第三方，不用于广告，不被开发者以外的人读取，也不用于训练通用 AI/ML 模型。
+</p>
 
 <h2>联系方式 / Contact</h2>
-<p>开发者本人可通过 Google Cloud Console 中本project登记的开发者联系邮箱联系。/ Contact the developer via the developer contact email registered in Google Cloud Console for this project.</p>
+<p>
+开发者邮箱：<a href="mailto:huangtao312@gmail.com">huangtao312@gmail.com</a><br>
+任何关于本应用、数据处理或删除数据的请求，都可以通过该邮箱联系，通常在 3 个工作日内回复。
+</p>
 
-<p class="sub">© 2026 Daxia437 · 本页面由开发者本人维护 / Maintained by the developer</p>
+<footer>
+© 2026 Daxia437 · 本页面由开发者本人维护 / Maintained by the developer<br>
+最后更新 / Last updated: 2026-11-01
+</footer>
+
 </body>
 </html>
